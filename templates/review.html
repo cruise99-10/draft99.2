@@ -22,7 +22,6 @@
     <script>
         $(document).ready(function () {
             nick()
-            listing()
         });
 
         function nick() {
@@ -31,20 +30,9 @@
                 url: '/api/nick',
                 data: {},
                 success: function (response) {
-                    console.log(response)
                     nick = response['nickname']
                     temp_html =`${nick}`
                     $("#nickname").append(temp_html)
-                }
-            })
-        }
-        function listing() {
-            $.ajax({
-                type: 'GET',
-                url: '/api/nick',
-                data: {},
-                success: function (response) {
-
                 }
             })
         }
@@ -92,10 +80,6 @@
     <h3 id='nickname'>여기</h3>
     <div id="write_area">
         <form enctype="multipart/form-data" action="write_ok.php?board_id=<?echo $board_id;?>" method="post">
-                        <div id="in_title">
-                            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100"
-                                      required></textarea>
-                        </div>
             <div class="mb-3">
                 <label for="url" class="form-label">URL을 알려주세요</label>
                 <input id ="url" type="email" class="form-control"  placeholder="URL을 주세요">

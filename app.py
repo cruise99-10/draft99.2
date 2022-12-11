@@ -13,12 +13,13 @@ from pymongo import MongoClient
 import certifi
 import jwt
 import bs4
+from bs4 import BeautifulSoup
 import datetime
 import hashlib
 import requests
 ca = certifi.where()
-# client = MongoClient("mongodb+srv://sparta:test@cluster0.xskerwx.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
-client = MongoClient("mongodb+srv://test:sparta@cluster0.jxtcbsj.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
+client = MongoClient("mongodb+srv://test:sparta@cluster0.m9zv2vc.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
+# client = MongoClient("mongodb+srv://test:sparta@cluster0.jxtcbsj.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca) 상휘님
 db = client.dbdraft99
 SECRET_KEY = 'SPARTA'
 
@@ -107,11 +108,8 @@ def api_valid():
         return jsonify({'result': 'success', 'nickname': userinfo['nick']})
     except jwt.ExpiredSignatureError:
         # 위를 실행했는데 만료시간이 지났으면 에러가 납니다.
-        print('nono')
         return jsonify({'result': 'fail', 'msg': '로그인 시간이 만료되었습니다.'})
-        print('nono?')
     except jwt.exceptions.DecodeError:
-        print("nonono")
         return jsonify({'result': 'fail', 'msg': '로그인 정보가 존재하지 않습니다.'})
 
 
@@ -150,18 +148,18 @@ def posting():
 
     soup = BeautifulSoup(data.text, 'html.parser')
 
-    title = soup.select_one('meta[property="og:title"]')['content']
+    title = soup.select_one('meta[property="og:title"]')['content'].split('|')[0]
+    writer = soup.select_one('meta[property="og:title"]')['content'].split('|')[1].split('-')[0]
     image = soup.select_one('meta[property="og:image"]')['content']
     desc = soup.select_one('meta[property="og:description"]')['content']
 
     doc ={
         'title':title,
+        'writer': writer,
         'image':image,
         'desc':desc,
         'reviewcomment':reviewcomment_receive
     }
-    # print('Hi')
-    print(headers)
     db.reviews.insert_one(doc)
 
     return jsonify({'msg':'저장 완료!'})
