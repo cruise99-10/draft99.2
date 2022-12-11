@@ -21,13 +21,27 @@
     </style>
     <script>
         $(document).ready(function () {
-            listing();
+            nick()
+            listing()
         });
 
+        function nick() {
+            $.ajax({
+                type: 'GET',
+                url: '/api/nick',
+                data: {},
+                success: function (response) {
+                    console.log(response)
+                    nick = response['nickname']
+                    temp_html =`${nick}`
+                    $("#nickname").append(temp_html)
+                }
+            })
+        }
         function listing() {
             $.ajax({
                 type: 'GET',
-                url: '/library/nick',
+                url: '/api/nick',
                 data: {},
                 success: function (response) {
 
@@ -42,7 +56,7 @@
 
             $.ajax({
                 type: 'POST',
-                url: '/library/write',
+                url: '/write',
                 data: {url_give: url, reviewcomment_give: reviewcomment},
                 success: function (response) {
                     alert(response['msg'])
@@ -63,19 +77,25 @@
         //         document.getElementById('preview').src = "";
         //     }
         // }
+
+        function logout() {
+            $.removeCookie('mytoken');
+            alert('로그아웃!')
+            window.location.href='/login'
+        }
     </script>
 
 <body>
 <!--<?$board_id=$_GET['board_id'];?>-->
 <div id="board_write">
     <h4>글을 작성하는 공간입니다.</h4>
-    <h3>여기</h3>
+    <h3 id='nickname'>여기</h3>
     <div id="write_area">
         <form enctype="multipart/form-data" action="write_ok.php?board_id=<?echo $board_id;?>" method="post">
-            <!--            <div id="in_title">-->
-            <!--                <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100"-->
-            <!--                          required></textarea>-->
-            <!--            </div>-->
+                        <div id="in_title">
+                            <textarea name="title" id="utitle" rows="1" cols="55" placeholder="제목" maxlength="100"
+                                      required></textarea>
+                        </div>
             <div class="mb-3">
                 <label for="url" class="form-label">URL을 알려주세요</label>
                 <input id ="url" type="email" class="form-control"  placeholder="URL을 주세요">
@@ -94,6 +114,7 @@
                 <button onclick="posting()" type="button" class="btn btn-dark">저장하기</button>
             </div>
         </form>
+        <button onclick="logout()">로그아웃</button>
     </div>
 </div>
 </body>
