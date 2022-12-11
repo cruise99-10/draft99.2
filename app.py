@@ -5,6 +5,21 @@
 
 # Packages
 ## 이 곳에서'만' 패키지를 받아옵니다.
+from flask import Flask, render_template, jsonify, request, session, redirect, url_for
+
+app = Flask(__name__)
+
+from pymongo import MongoClient
+import certifi
+import jwt
+import datetime
+import hashlib
+ca = certifi.where()
+client = MongoClient("mongodb+srv://sparta:test@cluster0.xskerwx.mongodb.net/?retryWrites=true&w=majority", tlsCAFile=ca)
+db = client.dbdraft99
+SECRET_KEY = 'SPARTA'
+
+
 
 # main (상휘)
 
