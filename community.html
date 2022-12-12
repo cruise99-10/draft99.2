@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    <link rel="stylesheet" href="./sytle/review.css"></link>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <style>
+        ul li {list-style-type: none; display:inline; margin-left:10px;}</style>
+   
+</head>
+
+<body>
+    
+
+<div class="toggle ">
+    <i class="xi-view-list xi-2x"></i>
+</div>
+<div class="overlay active"></div>
+<ul class="gnb" >
+    <li><a href="#none">Home</a></li>
+    <li><a href="#none">리뷰 작성하러 가기</a></li>
+    <li><a href="#none">북 리스트</a></li>
+
+</ul>
+
+
+
+
+<div class="contents">
+   
+<div class="scroll">
+    <div class="items">
+        <div class="review">청춘 인간의 소금이라 가는 그들은 봄바람 이 다. 이성은 천고에 우리의 위하여서. 속에 위하여, 얼마나 거친 그들은 운다. 피부가 낙원을 간에 구하지 하는 이상의 교향악이다. 하여도 부패를 인생을 그들의 길을 것이다. 불러 따뜻한 보는 사는가 품에 소담스러운 무엇이 봄바람이다. 더운지라 가치를 심장의 못할 없으면, 과실이 말이다. 내는 밝은 남는 위하여, 꽃 생명을 장식하는 천고에 옷을 칼이다. 풍부하게 원질이 대고, 이 것이다. 우리의 소금이라 위하여서, 사막이다. 소금이라 싹이 청춘 보라.
+
+          <div class="like"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="crimson" class="bi bi-heart-fill" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+        </svg></div>
+
+        </div>
+        <div class="book_image">
+            <img class="book_img" src="rom.jpg" alt="rom" style="width:100%">
+            <div class="container">
+            <p>청춘예찬</p>
+            </div>
+            <div class="writer">
+                <span>
+                <img class="profile_img" src="profile.png" alt="profile" style="width:100%">
+                </span>
+                <div class="writer_name">
+                <div class="nickname">nickname</div>
+                <div class="date_written">2022.12</div>
+                </div>
+                </div>
+          </div>      
+    </div>
+
+    <div class="comments">
+        <div class="bootstrap_comment">
+            <div class="mb-3">
+                <label for="exampleFormControlTextarea1" class="form-label"></label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+
+       
+        <span class="cmt_button">
+            <a href="#" class="btn-3d green">
+                댓글작성</a></span>
+            </div>
+    </div>
+    </div>
+</div>
+<script>
+    $('.toggle').click(function(){
+        $('.toggle').toggleClass('active')
+        $('.overlay').toggleClass('active')
+    })
+
+</script>
+
+
+
+</body>
+</html>
